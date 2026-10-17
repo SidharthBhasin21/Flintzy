@@ -1,0 +1,281 @@
+[
+  {
+    "id": "pst_rs",
+    "content": "Kenya Kiambu AA is back on the shelf. Blackcurrant, grapefruit and a long brown-sugar finish. We roasted the first 40 bags this morning — 250g and 1kg in store and online.",
+    "platforms": [
+      "instagram",
+      "facebook"
+    ],
+    "mediaUrl": "/media/beans.jpg",
+    "scheduledAt": "2026-10-13T02:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_st",
+    "content": "Open cupping this Thursday at 4pm. Three new Colombian lots side by side, no experience needed. Just bring yourself.",
+    "platforms": [
+      "x"
+    ],
+    "scheduledAt": "2026-10-13T06:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_tu",
+    "content": "60 seconds on how we dial in a V60: 15g coffee, 250g water at 94°C, 45s bloom, then slow pulses. Save this for your next weekend brew.",
+    "platforms": [
+      "tiktok",
+      "instagram"
+    ],
+    "mediaUrl": "/media/pour-over.jpg",
+    "scheduledAt": "2026-10-14T02:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_uv",
+    "content": "We're hiring two part-time baristas for the Harbour Street shop.\n\nNo café experience needed — we train everyone in-house over three paid weeks. Weekend availability is a must. Starting pay is £12.60/hour plus tips, a free bag of coffee every week and a staff drink on every shift.\n\nDrop your name and a few lines about yourself at hello@halfmoon.coffee, or come and say hi at the bar.",
+    "platforms": [
+      "facebook"
+    ],
+    "mediaUrl": "/media/shop-wall.jpg",
+    "scheduledAt": "2026-10-14T06:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_vw",
+    "content": "Reminder: the Harbour Street shop closes at 2pm today for a private event. Our Mill Lane roastery bar is open as usual until 5.",
+    "platforms": [
+      "x"
+    ],
+    "scheduledAt": "2026-10-15T02:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_wx",
+    "content": "Sunday rosettas from Priya on the morning shift. Oat, whole or the house hazelnut — all of them pour like this.",
+    "platforms": [
+      "instagram"
+    ],
+    "mediaUrl": "/media/latte.jpg",
+    "scheduledAt": "2026-10-15T04:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_xy",
+    "content": "Find us at Saturday market until 1pm. Filter on batch, cold brew in cans, and the last of the Kiambu.",
+    "platforms": [
+      "x"
+    ],
+    "scheduledAt": "2026-10-16T00:00:00.000Z",
+    "status": "failed",
+    "errorMessage": "X rate limit reached for @halfmooncoffee. New posts are accepted again after 15 minutes."
+  },
+  {
+    "id": "pst_yz",
+    "content": "Slow mornings are back. From this week the upstairs room opens at 7:30 with free refills on filter until 10.",
+    "platforms": [
+      "instagram",
+      "facebook"
+    ],
+    "mediaUrl": "/media/cafe-table.jpg",
+    "scheduledAt": "2026-10-16T04:00:00.000Z",
+    "status": "failed",
+    "errorMessage": "Instagram session expired for @halfmooncoffee. Reconnect the account before publishing again."
+  },
+  {
+    "id": "pst_100",
+    "content": "Weekend hours: Harbour Street 8–6, Mill Lane roastery 9–4. Pastries from Fernhill Bakery arrive by 8:30 both days.",
+    "platforms": [
+      "x",
+      "facebook"
+    ],
+    "scheduledAt": "2026-10-16T08:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_111",
+    "content": "The flat white that started it all. Double ristretto, 120ml whole milk, no apologies.",
+    "platforms": [
+      "instagram"
+    ],
+    "mediaUrl": "/media/flat-white.jpg",
+    "scheduledAt": "2026-10-17T01:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_122",
+    "content": "POV: you found the one café in town with plugs at every table and nobody rushing you out.",
+    "platforms": [
+      "tiktok"
+    ],
+    "mediaUrl": "/media/laptop-espresso.jpg",
+    "scheduledAt": "2026-10-17T03:00:00.000Z",
+    "status": "failed",
+    "errorMessage": "TikTok upload timed out after 60 seconds. The video was not published."
+  },
+  {
+    "id": "pst_133",
+    "content": "Pour-over bar is open. Today's rotation: Kiambu AA, Huila Pink Bourbon and a washed Sidama.",
+    "platforms": [
+      "x"
+    ],
+    "scheduledAt": "2026-10-17T05:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "pst_144",
+    "content": "Strawberry and cascara soda lands today. Fresh berries, coffee-cherry syrup, sparkling water. It's here until the berries run out — probably two weeks.",
+    "platforms": [
+      "instagram",
+      "facebook"
+    ],
+    "mediaUrl": "/media/strawberries.jpg",
+    "scheduledAt": "2026-10-17T08:15:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_155",
+    "content": "Small thing we love: regulars bringing back our 1kg bags to refill. 20p off every refill, every time.",
+    "platforms": [
+      "x"
+    ],
+    "scheduledAt": "2026-10-17T10:45:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_166",
+    "content": "Evening hours start next week. Harbour Street stays open until 9 on Thursdays and Fridays — decaf espresso is on the house after 6.",
+    "platforms": [
+      "instagram",
+      "tiktok"
+    ],
+    "mediaUrl": "/media/cafe-table.jpg",
+    "scheduledAt": "2026-10-17T15:45:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_177",
+    "content": "New opening hours from Monday. Harbour Street: 7:30–6 weekdays, 8–6 weekends. Mill Lane roastery bar: 9–4 Wednesday to Sunday.",
+    "platforms": [
+      "x",
+      "facebook"
+    ],
+    "scheduledAt": "2026-10-17T18:15:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_188",
+    "content": "Not a coffee person? Our tea menu now has four loose-leaf options from a family estate in Darjeeling, brewed to order in a French press.",
+    "platforms": [
+      "instagram"
+    ],
+    "mediaUrl": "/media/tea-press.jpg",
+    "scheduledAt": "2026-10-18T04:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_199",
+    "content": "Working remotely this week? The upstairs room at Harbour Street has fast wifi, plugs at every table and a no-rush policy. Bottomless filter is £4.",
+    "platforms": [
+      "x",
+      "facebook"
+    ],
+    "mediaUrl": "/media/laptop-desk.jpg",
+    "scheduledAt": "2026-10-18T08:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1aa",
+    "content": "Walk with us from the roastery to the shop. 400 metres, one detour for the best croissant on Mill Lane.",
+    "platforms": [
+      "tiktok"
+    ],
+    "mediaUrl": "/media/street.jpg",
+    "scheduledAt": "2026-10-18T13:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1bb",
+    "content": "Next roast drop: Ethiopia Guji Hambela, natural process. Strawberry jam, cacao nib, very juicy. Pre-orders open Thursday at noon.",
+    "platforms": [
+      "instagram",
+      "facebook"
+    ],
+    "mediaUrl": "/media/beans.jpg",
+    "scheduledAt": "2026-10-19T04:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1cc",
+    "content": "Hot take: the best way to judge a café is its batch brew, not its latte art. Come and test that theory, filter is £2.80 all week.",
+    "platforms": [
+      "x"
+    ],
+    "scheduledAt": "2026-10-19T08:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1dd",
+    "content": "Home brewing class, next Saturday at 10am at the Mill Lane roastery.\n\nTwo hours, six people max. We'll cover grind size, ratios and how to taste what you're changing. Every guest takes home a bag of coffee and a V60.\n\n£35 per person. Reply here or book at the bar.",
+    "platforms": [
+      "facebook"
+    ],
+    "mediaUrl": "/media/pour-over.jpg",
+    "scheduledAt": "2026-10-20T06:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1ee",
+    "content": "Cold season menu is live: fresh ginger, lemon and honey, steeped hot. Ask for it with a shot of espresso if you're feeling brave.",
+    "platforms": [
+      "instagram",
+      "tiktok",
+      "x"
+    ],
+    "mediaUrl": "/media/ginger-tea.jpg",
+    "scheduledAt": "2026-10-21T08:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1ff",
+    "content": "Halfmoon turns five on Saturday. First drink is on us for everyone who comes in before 10. Thank you for every early morning and every refill.",
+    "platforms": [
+      "x",
+      "instagram",
+      "facebook",
+      "tiktok"
+    ],
+    "mediaUrl": "/media/latte.jpg",
+    "scheduledAt": "2026-10-22T06:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1gg",
+    "content": "Meet the wall: every print here was made by a regular. We're adding three new pieces this month — submissions close on the 31st.",
+    "platforms": [
+      "facebook",
+      "instagram"
+    ],
+    "mediaUrl": "/media/shop-wall.jpg",
+    "scheduledAt": "2026-10-24T08:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1hh",
+    "content": "Roastery bar is closed Wednesday for a machine service. Harbour Street runs as normal, and yes, the cold brew is already made.",
+    "platforms": [
+      "x"
+    ],
+    "scheduledAt": "2026-10-25T09:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1ii",
+    "content": "Brew guide, part two: the AeroPress recipe our whole team swears by. Inverted, 17g, 1:13, two-minute steep.",
+    "platforms": [
+      "instagram"
+    ],
+    "mediaUrl": "/media/pour-over.jpg",
+    "scheduledAt": "2026-10-26T10:00:00.000Z",
+    "status": "scheduled"
+  }
+]

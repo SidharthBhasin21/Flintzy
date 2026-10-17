@@ -1,0 +1,181 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+/*
+ * Design tokens. Warm monochrome with color reserved for meaning
+ * (post status, platform marks). Every surface reads from these so
+ * light and dark stay in lockstep.
+ */
+:root {
+  --canvas: #fbfbfa;
+  --surface: #ffffff;
+  --surface-sunken: #f5f5f3;
+  --sidebar: #f6f6f4;
+  --hover: #f1f1ee;
+  --selected: #ececea;
+  --line: #e9e9e6;
+  --line-strong: #dad9d5;
+  --ink: #1c1c1a;
+  --ink-2: #5d5c58;
+  --ink-3: #8c8b86;
+  --primary: #1c1c1a;
+  --primary-hover: #34342f;
+  --primary-ink: #fbfbfa;
+  --focus: #2f6fd0;
+
+  --scheduled-bg: #e8f1fb;
+  --scheduled-ink: #1f5f99;
+  --scheduled-dot: #3b82d6;
+  --published-bg: #eaf3ea;
+  --published-ink: #2f6a35;
+  --published-dot: #4a9a55;
+  --failed-bg: #fbeceb;
+  --failed-ink: #a1302c;
+  --failed-dot: #d5473f;
+  --warn-ink: #8a5a00;
+  --warn-bar: #d99a1e;
+
+  --overlay: rgb(20 20 18 / 0.32);
+  --shadow-pop: 0 1px 2px rgb(20 20 18 / 0.04), 0 8px 24px -6px rgb(20 20 18 / 0.1);
+  --shadow-sheet: -1px 0 0 var(--line), -24px 0 48px -24px rgb(20 20 18 / 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #111110;
+    --surface: #181817;
+    --surface-sunken: #141413;
+    --sidebar: #141413;
+    --hover: #222220;
+    --selected: #2a2a28;
+    --line: #262624;
+    --line-strong: #353532;
+    --ink: #ededeb;
+    --ink-2: #a5a49f;
+    --ink-3: #74736e;
+    --primary: #ededeb;
+    --primary-hover: #d6d6d3;
+    --primary-ink: #111110;
+    --focus: #6aa2f0;
+
+    --scheduled-bg: rgb(59 130 214 / 0.16);
+    --scheduled-ink: #93c0f0;
+    --scheduled-dot: #5b9be4;
+    --published-bg: rgb(74 154 85 / 0.16);
+    --published-ink: #94d09d;
+    --published-dot: #5fb36b;
+    --failed-bg: rgb(213 71 63 / 0.16);
+    --failed-ink: #f2a19a;
+    --failed-dot: #e0605a;
+    --warn-ink: #e6b85c;
+    --warn-bar: #d99a1e;
+
+    --overlay: rgb(0 0 0 / 0.55);
+    --shadow-pop: 0 0 0 1px var(--line), 0 12px 32px -8px rgb(0 0 0 / 0.6);
+    --shadow-sheet: -1px 0 0 var(--line), -24px 0 48px -24px rgb(0 0 0 / 0.6);
+  }
+}
+
+@theme inline {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", monospace;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-sunken: var(--surface-sunken);
+  --color-sidebar: var(--sidebar);
+  --color-hover: var(--hover);
+  --color-selected: var(--selected);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-focus: var(--focus);
+
+  --color-scheduled-bg: var(--scheduled-bg);
+  --color-scheduled-ink: var(--scheduled-ink);
+  --color-scheduled-dot: var(--scheduled-dot);
+  --color-published-bg: var(--published-bg);
+  --color-published-ink: var(--published-ink);
+  --color-published-dot: var(--published-dot);
+  --color-failed-bg: var(--failed-bg);
+  --color-failed-ink: var(--failed-ink);
+  --color-failed-dot: var(--failed-dot);
+  --color-warn-ink: var(--warn-ink);
+  --color-warn-bar: var(--warn-bar);
+  --color-overlay: var(--overlay);
+
+  --shadow-pop: var(--shadow-pop);
+  --shadow-sheet: var(--shadow-sheet);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --animate-fade-in: fade-in 160ms var(--ease-out-quint);
+  --animate-fade-out: fade-out 120ms ease-in;
+  --animate-sheet-in: sheet-in 280ms var(--ease-snap);
+  --animate-sheet-out: sheet-out 180ms ease-in;
+  --animate-rise-in: rise-in 220ms var(--ease-out-quint);
+  --animate-up-in: up-in 320ms var(--ease-snap);
+  --animate-up-out: up-out 200ms ease-in;
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+
+  @keyframes fade-in { from { opacity: 0; } }
+  @keyframes fade-out { to { opacity: 0; } }
+  @keyframes sheet-in { from { transform: translateX(24px); opacity: 0; } }
+  @keyframes sheet-out { to { transform: translateX(24px); opacity: 0; } }
+  @keyframes rise-in { from { transform: translateY(4px) scale(0.985); opacity: 0; } }
+  @keyframes up-in { from { transform: translateY(100%); } }
+  @keyframes up-out { to { transform: translateY(100%); } }
+  @keyframes shimmer { 50% { opacity: 0.55; } }
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas font-sans text-sm text-ink antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--focus) 22%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
