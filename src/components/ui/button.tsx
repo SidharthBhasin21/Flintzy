@@ -14,6 +14,8 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary: 'bg-primary text-primary-ink hover:bg-primary-hover',
+        accent:
+          'bg-accent text-accent-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.18),0_1px_2px_rgb(0_0_0/0.08)] hover:bg-accent-hover',
         secondary:
           'border border-line-strong bg-surface text-ink shadow-[0_1px_0_rgb(0_0_0/0.03)] hover:bg-hover',
         ghost: 'text-ink-2 hover:bg-hover hover:text-ink',

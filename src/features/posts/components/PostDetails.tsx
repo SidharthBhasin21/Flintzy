@@ -33,7 +33,7 @@ export default function Details({ postId, busy }: { postId: string; busy: boolea
             <ArrowLeft strokeWidth={1.75} />
           </Button>
         </DialogClose>
-        <DialogTitle className="flex-1 text-[15px] font-semibold tracking-tight max-sm:text-center">
+        <DialogTitle className="flex-1 text-[16px] font-semibold tracking-[-0.01em] max-sm:text-center">
           Post details
         </DialogTitle>
         <DialogDescription className="sr-only">

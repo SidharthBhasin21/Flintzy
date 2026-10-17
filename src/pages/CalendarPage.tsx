@@ -1,5 +1,6 @@
 import { addMonths, format, isValid, parse, startOfMonth } from 'date-fns'
 import { CalendarPlus, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useRef } from 'react'
 import { useSearchParams } from 'react-router'
 import { useLiveSetSearchParams } from '@/lib/useLiveSetSearchParams'
 import { StatePanel } from '@/components/shared/StatePanel'
@@ -7,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { MonthGrid } from '@/features/calendar/components/MonthGrid'
 import { usePostActions } from '@/features/posts/actions/context'
-import { DaySection } from '@/features/posts/components/DayGroupList'
+import { DaySection } from '@/features/posts/components/Timeline'
 import { FilterBar } from '@/features/posts/components/FilterBar'
 import { LoadError } from '@/features/posts/components/QueueStates'
 import { useNow } from '@/features/posts/hooks/useNow'
@@ -16,12 +17,13 @@ import { usePosts } from '@/features/posts/store/context'
 import { applyFilters } from '@/features/posts/utils/filters'
 import { groupByDay } from '@/features/posts/utils/grouping'
 import { dayKey, parseDayKey } from '@/lib/dates'
+import { useStaggerIn } from '@/lib/motion'
 import { pluralize } from '@/lib/utils'
 import { PageHeader } from './PageHeader'
 
 export function CalendarPage() {
   const { status, posts, error, reload } = usePosts()
-  const { filters, setFilters, replaceFilters, clearFilters } = usePostFilters()
+  const { filters, setFilters, clearFilters } = usePostFilters()
   const actions = usePostActions()
   const [params] = useSearchParams()
   const setParams = useLiveSetSearchParams()
@@ -52,21 +54,23 @@ export function CalendarPage() {
       { replace: true },
     )
 
+  const dayRef = useRef<HTMLDivElement>(null)
+  useStaggerIn(dayRef, selectedKey, status === 'ready')
+
   const goToToday = () => setView({ month: startOfMonth(now), day: dayKey(now) })
 
   return (
-    <div className="mx-auto w-full max-w-[920px] px-4 pt-6 pb-16 sm:px-6 lg:px-10 lg:pt-10">
+    <div className="mx-auto w-full max-w-[1040px] px-4 pt-8 pb-16 sm:px-6 sm:pt-10">
       <PageHeader
         title="Calendar"
         summary={status === 'ready' ? `${pluralize(monthCount, 'post')} in ${format(month, 'MMMM')}` : ' '}
       />
 
-      <div className="mt-5">
+      <div className="mt-6">
         <FilterBar
           posts={posts}
           filters={filters}
           onChange={setFilters}
-          onReplace={replaceFilters}
           onClear={clearFilters}
           resultCount={filtered.length}
           showDateFilter={false}
@@ -74,7 +78,7 @@ export function CalendarPage() {
       </div>
 
       <div className="mt-6 mb-3 flex items-center gap-2">
-        <h2 className="mr-auto text-[17px] font-semibold tracking-tight" aria-live="polite">
+        <h2 className="mr-auto text-[19px] leading-none font-semibold tracking-[-0.02em]" aria-live="polite">
           {format(month, 'MMMM yyyy')}
         </h2>
         <Button variant="secondary" size="md" onClick={goToToday}>
@@ -103,7 +107,7 @@ export function CalendarPage() {
               setView({ day: key, month: startOfMonth(date) })
             }}
           />
-          <div className="mt-2">
+          <div ref={dayRef} className="mt-2">
             {selectedGroup ? (
               <DaySection group={selectedGroup} now={now} />
             ) : (

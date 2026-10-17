@@ -41,3 +41,37 @@ export function StatusBadge({
     </span>
   )
 }
+
+/** Marker on the timeline rail. Shape and colour both encode status. */
+export function StatusNode({ status, pending, className }: { status: PostStatus; pending?: boolean; className?: string }) {
+  if (pending) {
+    return <Loader2 aria-hidden className={cn('size-3.5 animate-spin text-ink-3', className)} strokeWidth={2.5} />
+  }
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        'block rounded-full ring-4 ring-canvas',
+        status === 'scheduled' && 'size-3 border-2 border-scheduled-dot bg-canvas',
+        status === 'published' && 'size-3 bg-published-dot',
+        status === 'failed' && 'size-3 bg-failed-dot shadow-[0_0_0_3px_var(--failed-bg)]',
+        className,
+      )}
+    />
+  )
+}
+
+const LABEL_TONE: Record<PostStatus, string> = {
+  scheduled: 'text-scheduled-ink',
+  published: 'text-published-ink',
+  failed: 'text-failed-ink',
+}
+
+/** Inline status word for meta lines, where a pill would be too loud. */
+export function StatusLabel({ status, pending }: { status: PostStatus; pending?: boolean }) {
+  return (
+    <span className={cn('font-medium', LABEL_TONE[status])}>
+      {pending ? 'Publishing…' : STATUS_LABELS[status]}
+    </span>
+  )
+}

@@ -41,12 +41,6 @@ export function useComposerForm(post?: Post) {
     if (key === 'mediaUrl') setMediaBroken(false)
   }
 
-  const reset = () => {
-    setValues({ content: '', platforms: values.platforms, mediaUrl: '', ...defaultScheduleInputs() })
-    setAttempted(false)
-    setMediaBroken(false)
-  }
-
   /** Marks the form as attempted and returns the first invalid field, if any. */
   const attempt = (): ComposerField | null => {
     setAttempted(true)
@@ -60,7 +54,6 @@ export function useComposerForm(post?: Post) {
     isValid,
     isDirty,
     attempt,
-    reset,
     setMediaBroken,
   }
 }

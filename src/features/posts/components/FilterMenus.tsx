@@ -1,31 +1,10 @@
-import { CalendarRange, ChevronDown, Layers, ListFilter } from 'lucide-react'
-import { PlatformIcon } from '@/components/platform/PlatformIcon'
-import { StatusDot } from '@/components/posts/StatusBadge'
+import { CalendarRange, ChevronDown } from 'lucide-react'
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { Radio, RadioGroup } from '@/components/ui/checkbox'
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { PLATFORMS, PLATFORM_ORDER, STATUS_LABELS, STATUS_ORDER } from '@/lib/constants'
 import { cn } from '@/lib/utils'
-import type { Platform, PostStatus } from '../types'
 import { DATE_RANGE_LABELS, type DateRange, type PostFilters } from '../utils/filters'
-
-const toggle = <T,>(list: T[], item: T) =>
-  list.includes(item) ? list.filter((x) => x !== item) : [...list, item]
-
-function triggerLabel<T extends string>(selected: T[], all: string, name: (v: T) => string, plural: string) {
-  if (selected.length === 0) return all
-  if (selected.length === 1) return name(selected[0])
-  return `${selected.length} ${plural}`
-}
 
 /** Radix passes its handlers, aria state and ref through `asChild`, so spread them onto the button. */
 function FilterTrigger({
@@ -34,7 +13,7 @@ function FilterTrigger({
   children,
   className,
   ...props
-}: ButtonProps & { active: boolean; icon: typeof Layers; children: string }) {
+}: ButtonProps & { active: boolean; icon: typeof CalendarRange; children: string }) {
   return (
     <Button
       variant="secondary"
@@ -49,88 +28,6 @@ function FilterTrigger({
       {children}
       <ChevronDown strokeWidth={1.75} className="-mr-0.5 text-ink-3" />
     </Button>
-  )
-}
-
-export function PlatformMenu({
-  value,
-  counts,
-  onChange,
-}: {
-  value: Platform[]
-  counts: Record<Platform, number>
-  onChange: (next: Platform[]) => void
-}) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <FilterTrigger active={value.length > 0} icon={Layers}>
-          {triggerLabel(value, 'All platforms', (p) => PLATFORMS[p].label, 'platforms')}
-        </FilterTrigger>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {PLATFORM_ORDER.map((p) => (
-          <DropdownMenuCheckboxItem
-            key={p}
-            checked={value.includes(p)}
-            onSelect={(e) => e.preventDefault()}
-            onCheckedChange={() => onChange(toggle(value, p))}
-          >
-            <PlatformIcon decorative platform={p} />
-            {PLATFORMS[p].label}
-            <span className="ml-auto pl-4 text-[12px] text-ink-3 tabular-nums">{counts[p]}</span>
-          </DropdownMenuCheckboxItem>
-        ))}
-        {value.length > 0 && (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onSelect={() => onChange([])}>Show all platforms</DropdownMenuItem>
-          </>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}
-
-export function StatusMenu({
-  value,
-  counts,
-  onChange,
-}: {
-  value: PostStatus[]
-  counts: Record<PostStatus, number>
-  onChange: (next: PostStatus[]) => void
-}) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <FilterTrigger active={value.length > 0} icon={ListFilter}>
-          {triggerLabel(value, 'All statuses', (s) => STATUS_LABELS[s], 'statuses')}
-        </FilterTrigger>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {STATUS_ORDER.map((s) => (
-          <DropdownMenuCheckboxItem
-            key={s}
-            checked={value.includes(s)}
-            onSelect={(e) => e.preventDefault()}
-            onCheckedChange={() => onChange(toggle(value, s))}
-          >
-            <span className="inline-flex size-4 items-center justify-center">
-              <StatusDot status={s} className="size-2" />
-            </span>
-            {STATUS_LABELS[s]}
-            <span className="ml-auto pl-4 text-[12px] text-ink-3 tabular-nums">{counts[s]}</span>
-          </DropdownMenuCheckboxItem>
-        ))}
-        {value.length > 0 && (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onSelect={() => onChange([])}>Show all statuses</DropdownMenuItem>
-          </>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
   )
 }
 

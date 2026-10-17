@@ -7,6 +7,8 @@ import { QueuePage } from '@/pages/QueuePage'
 
 const router = createBrowserRouter([
   {
+    // Shown for the instant a lazy route (calendar) loads on a direct visit.
+    HydrateFallback: () => <div className="min-h-dvh bg-canvas" aria-busy />,
     element: (
       <PostActionsProvider>
         <AppShell />

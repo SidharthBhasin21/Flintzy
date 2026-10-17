@@ -102,3 +102,27 @@ export function defaultScheduleInputs(now = new Date()): LocalDateTimeInputs {
   }
   return { date: format(slot, 'yyyy-MM-dd'), time: format(slot, 'HH:mm') }
 }
+
+export interface QuickSlot extends LocalDateTimeInputs {
+  label: string
+}
+
+/** One-tap scheduling suggestions, all in local time. */
+export function quickSlots(now = new Date()): QuickSlot[] {
+  const inAnHour = addMinutes(now, 60)
+  inAnHour.setSeconds(0, 0)
+  inAnHour.setMinutes(Math.ceil(inAnHour.getMinutes() / 15) * 15)
+
+  const tomorrowMorning = setHours(startOfDay(addDays(now, 1)), 9)
+  const daysToMonday = ((8 - now.getDay()) % 7) || 7
+  const mondayMorning = setHours(startOfDay(addDays(now, daysToMonday)), 9)
+
+  const toInputs = (d: Date) => ({ date: format(d, 'yyyy-MM-dd'), time: format(d, 'HH:mm') })
+  const slots: QuickSlot[] = [
+    { label: 'In 1 hour', ...toInputs(inAnHour) },
+    { label: 'Tomorrow, 9 AM', ...toInputs(tomorrowMorning) },
+  ]
+  // Skip Monday when it's tomorrow; it would duplicate the previous chip.
+  if (daysToMonday !== 1) slots.push({ label: 'Monday, 9 AM', ...toInputs(mondayMorning) })
+  return slots
+}

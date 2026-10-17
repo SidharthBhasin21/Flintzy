@@ -8,7 +8,6 @@ import {
   AlertDialogContent,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import { useIsWide } from '@/components/shared/useMediaQuery'
 import { PLATFORMS } from '@/lib/constants'
 import { usePosts } from '../store/context'
 import type { Post } from '../types'
@@ -24,7 +23,6 @@ const listFormat = (items: string[]) => new Intl.ListFormat(undefined, { type: '
 export function PostActionsProvider({ children }: { children: ReactNode }) {
   const { deletePost, retryPost } = usePosts()
   const setParams = useLiveSetSearchParams()
-  const isWide = useIsWide()
   const [deleting, setDeleting] = useState<Post | null>(null)
 
   const patchParams = (patch: Record<string, string | null>, replace = false) =>
@@ -40,24 +38,11 @@ export function PostActionsProvider({ children }: { children: ReactNode }) {
       { replace },
     )
 
-  const focusComposer = () =>
-    requestAnimationFrame(() => document.getElementById('composer-content')?.focus())
-
   const actions: PostActions = {
     view: (post) => patchParams({ post: post.id }),
-    edit: (post) => {
-      // Close details first so the composer never stacks on top of it.
-      patchParams({ post: null, compose: null, edit: post.id }, true)
-      if (isWide) focusComposer()
-    },
-    create: () => {
-      if (isWide) {
-        patchParams({ edit: null, compose: null }, true)
-        focusComposer()
-      } else {
-        patchParams({ compose: 'new', edit: null })
-      }
-    },
+    // Close details first so the composer never stacks on top of it.
+    edit: (post) => patchParams({ post: null, compose: null, edit: post.id }, true),
+    create: () => patchParams({ compose: 'new', edit: null, post: null }),
     retry: (post) => void retryPost(post),
     requestDelete: (post) => setDeleting(post),
     copy: async (post) => {

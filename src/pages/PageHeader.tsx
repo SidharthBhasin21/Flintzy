@@ -4,9 +4,8 @@ export function PageHeader({ title, summary, actions }: { title: string; summary
   return (
     <div className="flex items-end justify-between gap-4">
       <div className="min-w-0">
-        {/* On small screens the active tab already names the page. */}
-        <h1 className="text-[22px] font-semibold tracking-[-0.02em] max-lg:sr-only">{title}</h1>
-        {summary && <p className="mt-0.5 text-[13px] text-ink-2 max-lg:mt-0">{summary}</p>}
+        <h1 className="text-[28px] leading-none font-bold tracking-[-0.035em] sm:text-[30px]">{title}</h1>
+        {summary && <p className="mt-2 text-[13.5px] text-ink-2">{summary}</p>}
       </div>
       {actions}
     </div>
