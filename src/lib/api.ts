@@ -1,20 +1,23 @@
+import { addDays, addMinutes, differenceInCalendarDays, setHours, setMinutes, startOfDay } from 'date-fns'
 import seed from '@/data/posts.json'
 import type { Post, PostInput } from '@/features/posts/types'
 
 /*
  * Mock backend. Nothing leaves the browser.
  *
- * - Seed dates are rebased so the queue always looks "live": every post keeps
- *   its distance from now that it had relative to SEED_REFERENCE.
+ * - Seed dates are rebased so the queue always looks "live". Seeds are written
+ *   for SEED_DAY; each post moves by the same number of days relative to today
+ *   and keeps its wall-clock time (a 9:00 seed posts at 9:00 your time).
+ *   Statuses always agree with the clock: scheduled posts are never in the
+ *   past and published/failed posts never in the future.
  * - Writes persist to sessionStorage, so a reload keeps your changes and a new
  *   tab starts fresh.
  * - Append `?mock=error`, `?mock=empty` or `?mock=slow` to the URL to exercise
  *   the failure, empty and slow-network states.
  */
 
-const SEED_REFERENCE = Date.parse('2026-10-17T06:00:00.000Z')
-const STORAGE_KEY = 'flintzy:posts:v1'
-const QUARTER_HOUR = 15 * 60 * 1000
+const SEED_DAY = Date.UTC(2026, 9, 17)
+const STORAGE_KEY = 'flintzy:posts:v2'
 
 export class ApiError extends Error {
   constructor(message: string) {
@@ -35,13 +38,19 @@ const latency = (base: number) =>
     setTimeout(resolve, (mockMode === 'slow' ? base * 4 : base) + Math.random() * 150),
   )
 
-function rebaseSeed(): Post[] {
-  // Round to a quarter hour so rebased times stay on :00/:15/:30/:45.
-  const shift = Math.round((Date.now() - SEED_REFERENCE) / QUARTER_HOUR) * QUARTER_HOUR
-  return (seed as Post[]).map((post) => ({
-    ...post,
-    scheduledAt: new Date(Date.parse(post.scheduledAt) + shift).toISOString(),
-  }))
+function rebaseSeed(now = new Date()): Post[] {
+  const today = startOfDay(now)
+  return (seed as Post[]).map((post) => {
+    const at = new Date(post.scheduledAt)
+    const dayOffset = differenceInCalendarDays(
+      Date.UTC(at.getUTCFullYear(), at.getUTCMonth(), at.getUTCDate()),
+      SEED_DAY,
+    )
+    let local = setMinutes(setHours(addDays(today, dayOffset), at.getUTCHours()), at.getUTCMinutes())
+    if (post.status === 'scheduled' && local < addMinutes(now, 15)) local = addDays(local, 1)
+    if (post.status !== 'scheduled' && local > now) local = addDays(local, -1)
+    return { ...post, scheduledAt: local.toISOString() }
+  })
 }
 
 function load(): Post[] {

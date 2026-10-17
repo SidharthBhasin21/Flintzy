@@ -1,11 +1,13 @@
 import { useSearchParams } from 'react-router'
+import { useLiveSetSearchParams } from '@/lib/useLiveSetSearchParams'
 
 /**
  * Keeps an open panel (post details, composer) in the URL so it is linkable
  * and the browser/hardware back button closes it.
  */
 export function useOverlayParam(name: string) {
-  const [params, setParams] = useSearchParams()
+  const [params] = useSearchParams()
+  const setParams = useLiveSetSearchParams()
   const value = params.get(name)
 
   const open = (next: string) => {

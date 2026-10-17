@@ -57,6 +57,8 @@ export function Composer({ post, onDone, onCancel, onDirtyChange, onView }: Comp
 
   useEffect(() => {
     onDirtyChange?.(form.isDirty)
+    // Reset on unmount so a closed composer never blocks the next close.
+    return () => onDirtyChange?.(false)
   }, [form.isDirty, onDirtyChange])
 
   const submit = async (event?: FormEvent) => {

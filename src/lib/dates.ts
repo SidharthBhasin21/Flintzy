@@ -1,10 +1,13 @@
 import {
+  addDays,
   addMinutes,
   differenceInCalendarDays,
   differenceInMinutes,
   format,
   isValid,
   parse,
+  setHours,
+  startOfDay,
 } from 'date-fns'
 import { tz } from '@date-fns/tz'
 
@@ -59,7 +62,8 @@ export function relativeTime(iso: string, now: Date): string {
   if (Math.abs(days) === 0 || abs < 6 * 60) {
     const h = Math.floor(abs / 60)
     const m = abs % 60
-    const span = m ? `${h}h ${m}m` : `${h}h`
+    // Minutes only matter while the post is close.
+    const span = m && h < 6 ? `${h}h ${m}m` : `${h}h`
     return minutes > 0 ? `in ${span}` : `${span} ago`
   }
   if (days === 1) return 'tomorrow'
@@ -84,11 +88,17 @@ export function localInputsToUtcIso({ date, time }: LocalDateTimeInputs): string
   return isValid(parsed) ? parsed.toISOString() : null
 }
 
-/** A sensible default slot: the next half hour at least an hour from now. */
+/**
+ * A sensible default slot: the next half hour at least an hour from now,
+ * unless that lands outside 8:00–21:00, in which case 9:00 the next morning.
+ */
 export function defaultScheduleInputs(now = new Date()): LocalDateTimeInputs {
   const target = addMinutes(now, 60)
-  const rounded = new Date(target)
-  rounded.setSeconds(0, 0)
-  rounded.setMinutes(target.getMinutes() < 30 ? 30 : 60)
-  return { date: format(rounded, 'yyyy-MM-dd'), time: format(rounded, 'HH:mm') }
+  let slot = new Date(target)
+  slot.setSeconds(0, 0)
+  slot.setMinutes(target.getMinutes() < 30 ? 30 : 60)
+  if (slot.getHours() < 8 || slot.getHours() >= 21) {
+    slot = setHours(startOfDay(slot.getHours() < 8 ? slot : addDays(slot, 1)), 9)
+  }
+  return { date: format(slot, 'yyyy-MM-dd'), time: format(slot, 'HH:mm') }
 }

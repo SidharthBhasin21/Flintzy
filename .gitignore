@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Agent tooling
+.agents/
+.claude/
+AGENTS.md

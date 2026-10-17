@@ -126,3 +126,13 @@ export function applyFilters(
     return true
   })
 }
+
+export function countBy(posts: Post[]) {
+  const platforms = Object.fromEntries(PLATFORM_ORDER.map((p) => [p, 0])) as Record<Platform, number>
+  const statuses = Object.fromEntries(STATUS_ORDER.map((s) => [s, 0])) as Record<PostStatus, number>
+  for (const post of posts) {
+    statuses[post.status]++
+    for (const p of post.platforms) platforms[p]++
+  }
+  return { platforms, statuses }
+}

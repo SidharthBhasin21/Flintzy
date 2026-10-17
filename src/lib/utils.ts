@@ -13,9 +13,7 @@ const segmenter =
 
 export function countCharacters(text: string): number {
   if (!segmenter) return [...text].length
-  let count = 0
-  for (const _ of segmenter.segment(text)) count++
-  return count
+  return Array.from(segmenter.segment(text)).length
 }
 
 export function pluralize(count: number, singular: string, plural = `${singular}s`) {

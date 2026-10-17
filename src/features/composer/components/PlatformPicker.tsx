@@ -49,6 +49,7 @@ export function PlatformPicker({
           >
             <span className="flex items-center justify-between">
               <PlatformIcon
+                decorative
                 platform={p}
                 className={cn('size-[18px] transition-opacity', !on && 'opacity-55 group-hover:opacity-80')}
               />

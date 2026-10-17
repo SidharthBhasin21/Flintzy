@@ -62,7 +62,7 @@ export function PostPreview({
                 p === active ? 'bg-selected text-ink' : 'text-ink-2 hover:bg-hover',
               )}
             >
-              <PlatformIcon platform={p} className="size-3.5" />
+              <PlatformIcon decorative platform={p} className="size-3.5" />
               {PLATFORMS[p].label}
             </button>
           ))}

@@ -1,15 +1,9 @@
 import { useId } from 'react'
-import { siFacebook, siInstagram, siTiktok, siX } from 'simple-icons'
 import { PLATFORMS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import type { Platform } from '@/features/posts/types'
+import { BRAND_PATHS } from './brandPaths'
 
-const PATHS: Record<Platform, string> = {
-  x: siX.path,
-  instagram: siInstagram.path,
-  facebook: siFacebook.path,
-  tiktok: siTiktok.path,
-}
 
 interface PlatformIconProps {
   platform: Platform
@@ -17,9 +11,11 @@ interface PlatformIconProps {
   /** "brand" uses the platform's colours; "mono" inherits currentColor. */
   tone?: 'brand' | 'mono'
   title?: string
+  /** Hide from assistive tech when a visible text label sits next to the icon. */
+  decorative?: boolean
 }
 
-export function PlatformIcon({ platform, className, tone = 'brand', title }: PlatformIconProps) {
+export function PlatformIcon({ platform, className, tone = 'brand', title, decorative }: PlatformIconProps) {
   const gradientId = useId()
   const label = title ?? PLATFORMS[platform].label
 
@@ -32,11 +28,12 @@ export function PlatformIcon({ platform, className, tone = 'brand', title }: Pla
   return (
     <svg
       viewBox="0 0 24 24"
-      role="img"
-      aria-label={label}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : label}
+      aria-hidden={decorative || undefined}
       className={cn('size-4 shrink-0', tone === 'brand' && 'text-ink', className)}
     >
-      <title>{label}</title>
+      {!decorative && <title>{label}</title>}
       {tone === 'brand' && platform === 'instagram' && (
         <defs>
           <radialGradient id={gradientId} cx="0.3" cy="1.07" r="1.2">
@@ -48,7 +45,7 @@ export function PlatformIcon({ platform, className, tone = 'brand', title }: Pla
           </radialGradient>
         </defs>
       )}
-      <path d={PATHS[platform]} fill={fill} />
+      <path d={BRAND_PATHS[platform]} fill={fill} />
     </svg>
   )
 }
