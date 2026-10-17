@@ -1,5 +1,16 @@
 [
   {
+    "id": "pst_1jj",
+    "content": "Thank you to everyone who came out for the latte art throwdown on Sunday. Congrats to Priya, our new reigning champ, and her very convincing swan.",
+    "platforms": [
+      "facebook",
+      "instagram"
+    ],
+    "mediaUrl": "/media/latte.jpg",
+    "scheduledAt": "2026-10-12T16:00:00.000Z",
+    "status": "published"
+  },
+  {
     "id": "pst_rs",
     "content": "Kenya Kiambu AA is back on the shelf. Blackcurrant, grapefruit and a long brown-sugar finish. We roasted the first 40 bags this morning — 250g and 1kg in store and online.",
     "platforms": [
@@ -58,6 +69,16 @@
     "mediaUrl": "/media/latte.jpg",
     "scheduledAt": "2026-10-15T10:00:00.000Z",
     "status": "published"
+  },
+  {
+    "id": "pst_1kk",
+    "content": "Our autumn hours start Monday: Harbour Street opens at 7:30 and closes at 6. The roastery bar keeps its usual hours.",
+    "platforms": [
+      "facebook"
+    ],
+    "scheduledAt": "2026-10-15T15:30:00.000Z",
+    "status": "failed",
+    "errorMessage": "Facebook returned a temporary error (code 2). The post was not published."
   },
   {
     "id": "pst_xy",
@@ -224,6 +245,17 @@
     "status": "scheduled"
   },
   {
+    "id": "pst_1ll",
+    "content": "New single origin on the bar: a washed Ethiopian from Guji. Think peach, bergamot and a finish like black tea. Available as pour-over all week.",
+    "platforms": [
+      "x",
+      "instagram"
+    ],
+    "mediaUrl": "/media/beans.jpg",
+    "scheduledAt": "2026-10-20T15:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
     "id": "pst_1ee",
     "content": "Cold season menu is live: fresh ginger, lemon and honey, steeped hot. Ask for it with a shot of espresso if you're feeling brave.",
     "platforms": [
@@ -246,6 +278,17 @@
     ],
     "mediaUrl": "/media/latte.jpg",
     "scheduledAt": "2026-10-22T09:00:00.000Z",
+    "status": "scheduled"
+  },
+  {
+    "id": "pst_1mm",
+    "content": "60 seconds behind the bar: how we dial in espresso every morning before the doors open.",
+    "platforms": [
+      "tiktok",
+      "instagram"
+    ],
+    "mediaUrl": "/media/laptop-espresso.jpg",
+    "scheduledAt": "2026-10-23T11:00:00.000Z",
     "status": "scheduled"
   },
   {

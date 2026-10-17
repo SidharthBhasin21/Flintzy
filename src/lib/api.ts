@@ -17,7 +17,7 @@ import type { Post, PostInput } from '@/features/posts/types'
  */
 
 const SEED_DAY = Date.UTC(2026, 9, 17)
-const STORAGE_KEY = 'flintzy:posts:v2'
+const STORAGE_KEY = 'flintzy:posts:v3'
 
 export class ApiError extends Error {
   constructor(message: string) {
@@ -85,8 +85,8 @@ function findOrThrow(id: string): Post {
 
 const newId = () => `pst_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`
 
-/** Errors that a straight retry cannot fix. The mock fails these again. */
-const isPermanentFailure = (message = '') => /expired|reconnect|revoked/i.test(message)
+const RETRY_DELAY_MS = 1000
+const RETRY_FAILURE_RATE = 0.2
 
 let listCalls = 0
 
@@ -129,13 +129,13 @@ export const api = {
     persist()
   },
 
-  /** Attempts to publish a failed post immediately. */
+  /** Attempts to publish a failed post immediately. Takes 1s and fails 20% of the time. */
   async retryPost(id: string): Promise<Post> {
-    await latency(1100)
+    await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS))
     const post = findOrThrow(id)
     if (post.status !== 'failed') return clone(post)
-    if (isPermanentFailure(post.errorMessage)) {
-      throw new ApiError(post.errorMessage ?? 'Publishing failed again.')
+    if (Math.random() < RETRY_FAILURE_RATE) {
+      throw new ApiError('The platform didn’t respond. Your post is still waiting to publish.')
     }
     const published: Post = { ...post, status: 'published', errorMessage: undefined }
     db = db.map((p) => (p.id === id ? published : p))
