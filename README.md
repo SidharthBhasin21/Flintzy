@@ -2,6 +2,8 @@
 
 A frontend-only social media post scheduler. Plan, schedule and track posts for X, Instagram, Facebook and TikTok. There's no backend: every API call is mocked in the browser, and nothing is actually published.
 
+**Live demo:** [flintzy-six.vercel.app](https://flintzy-six.vercel.app/)
+
 ## Getting started
 
 **Prerequisites:** Node.js 20.19+ or 22.12+ (required by Vite 8) and npm.
